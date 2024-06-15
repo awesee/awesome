@@ -3,7 +3,6 @@ package cmd
 import (
 	"fmt"
 	"io"
-	"io/fs"
 	"net/http"
 	"net/url"
 	"os"
@@ -47,11 +46,10 @@ var updateCmd = &cobra.Command{
 		data, err := io.ReadAll(resp.Body)
 		util.CheckErr(err)
 		sourceFileDir := filepath.Join(os.TempDir(), "awesee")
-		util.CheckErr(os.MkdirAll(sourceFileDir, fs.ModePerm))
+		util.CheckErr(os.MkdirAll(sourceFileDir, 0755))
 		sourceFile := filepath.Join(sourceFileDir, binaryName)
-		util.CheckErr(os.WriteFile(sourceFile, data, fs.ModePerm))
+		util.CheckErr(os.WriteFile(sourceFile, data, 0755))
 		verbosePrintln(sourceFile)
-		util.CheckErr(os.Chmod(sourceFile, fs.ModePerm))
 		util.CheckErr(os.Rename(sourceFile, targetFile))
 	},
 }
