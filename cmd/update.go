@@ -51,7 +51,7 @@ var updateCmd = &cobra.Command{
 		sourceFile := filepath.Join(sourceFileDir, binaryName)
 		util.CheckErr(os.WriteFile(sourceFile, data, fs.ModePerm))
 		verbosePrintln(sourceFile)
-		util.CheckErr(os.Chmod(sourceFileDir, fs.ModePerm))
+		util.CheckErr(os.Chmod(sourceFile, fs.ModePerm))
 		util.CheckErr(os.Rename(sourceFile, targetFile))
 	},
 }

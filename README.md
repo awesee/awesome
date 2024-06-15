@@ -6,6 +6,12 @@
 go install github.com/awesee/awesome@latest
 ```
 
+## Linux
+
+```
+curl -sSL https://github.com/awesee/awesome/releases/latest/download/awesome-linux-amd64 -o /usr/local/bin/awesome
+```
+
 ## Help
 
 ```
