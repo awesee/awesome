@@ -23,12 +23,7 @@ var redisCmd = &cobra.Command{
 	Use:   "redis",
 	Short: "Lookup redis keys without expire",
 	Run: func(cmd *cobra.Command, args []string) {
-		rdb := redis.NewClient(&redis.Options{
-			Addr:     fmt.Sprintf("%s:%d", redisHost, redisPort),
-			Username: redisUser,
-			Password: redisPass,
-			DB:       redisDb,
-		})
+		rdb := redisClient()
 		iter := rdb.Scan(ctx, 0, "*", 200).Iterator()
 		util.CheckErr(iter.Err())
 		idx := 0
@@ -55,4 +50,15 @@ func init() {
 	redisCmd.Flags().StringVar(&redisPass, "pass", "", "redis password")
 	redisCmd.Flags().IntVar(&redisDb, "db", 0, "redis database number")
 	redisCmd.Flags().DurationVar(&redisExpire, "expire", 0, `redis keys expire time, such as "1h", "20m" or "60s"`)
+}
+
+func redisClient() *redis.Client {
+	rdb := redis.NewClient(&redis.Options{
+		Addr:     fmt.Sprintf("%s:%d", redisHost, redisPort),
+		Username: redisUser,
+		Password: redisPass,
+		DB:       redisDb,
+	})
+	util.CheckErr(rdb.Ping(ctx).Err())
+	return rdb
 }

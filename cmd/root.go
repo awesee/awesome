@@ -9,6 +9,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const VERSION = "0.1.1"
+
 var (
 	ctx     = context.Background()
 	verbose = false
@@ -22,8 +24,9 @@ var exeSuffix = func() string {
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "awesome",
-	Short: "Awesome tools",
+	Use:              "awesome",
+	Short:            "Awesome tools",
+	TraverseChildren: true,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
