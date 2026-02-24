@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const VERSION = "0.1.1"
+const VERSION = "0.1.2"
 
 var (
 	ctx     = context.Background()
