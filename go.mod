@@ -1,6 +1,6 @@
 module github.com/awesee/awesome
 
-go 1.25.0
+go 1.27.0
 
 require (
 	github.com/redis/go-redis/v9 v9.18.0
@@ -21,5 +21,5 @@ require (
 	github.com/spf13/pflag v1.0.10 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/text v0.34.0 // indirect
+	golang.org/x/text v0.39.0 // indirect
 )
